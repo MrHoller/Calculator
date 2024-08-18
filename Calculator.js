@@ -53,7 +53,7 @@ class Main extends App
     addSymbol(name){
        var operators = ["+", "-", "*", "÷", "."]
        if(operators.indexOf(name) !== -1){ // этот отрезок кода не даст поставить первым символом оператор и так же ставить операторы друг за другом, чтобы избежать ошибок
-         var lastSymbol = this.tfd.text.slice(-1)
+         var lastSymbol = this.tfd.text.split("\n")[0].slice(-1)
          if(operators.indexOf(lastSymbol) !== -1 || lastSymbol == ""){
            return;
          }
@@ -73,7 +73,7 @@ class Main extends App
         if(this.tfd.text == ""){ // если поле ввода пусто, не считаем
           return;
         }
-        var lastSymbol = this.tfd.text.slice(-1)
+        var lastSymbol = this.tfd.text.split("\n")[0].slice(-1)
         if(operators.indexOf(lastSymbol) !== -1){ // если последний символ оператор, то не считаем
           return;
         }
