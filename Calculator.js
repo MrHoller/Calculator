@@ -80,4 +80,42 @@ class Main extends App
         try{
           this.counted = true
           this.tfd.text = ""+eval(this.tfd.text.split("\n")[0])
-   
+        } catch(e){
+          this.error = true
+          this.tfd.text = e.message
+        }
+      } else { // любая другая кнопка добавлять символ в поле
+        this.tfd.text = this.tfd.text.split("\n")[0] + name
+        this.live()
+      }
+    }
+    
+    // отображение подсчета в режиме реального времени
+    live(){
+      try{
+        let value = eval(this.tfd.text.split("\n")[0])
+        this.tfd.text = this.tfd.text.split("\n")[0]+"\n\n"+value
+      }catch(e){}
+    }
+    
+    // функция добавления кнопок
+    addButton(name, lay){
+      if(lay == 1){
+      	this.btn = ui.addButton(this.layOne, name, "Outlined")
+      }
+      if(lay == 2){
+        this.btn = ui.addButton(this.layTwo, name, "Outlined")
+      }
+      if(lay == 3){
+        this.btn = ui.addButton(this.layTree, name, "Outlined")
+      }
+      if(lay == 4){
+        this.btn = ui.addButton(this.layFour, name, "Outlined")
+      }
+      if(lay == 5){
+        this.btn = ui.addButton(this.layFive, name, "Outlined")
+      }
+      this.btn.setOnTouch(() => this.addSymbol(name))
+      this.btn.sizeVariant = "large"
+    }
+}
