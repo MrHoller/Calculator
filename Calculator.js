@@ -51,7 +51,8 @@ class Main extends App
     
     // функция вывода смволов и подсчета результата
     addSymbol(name){
-       var operators = ["+", "-", "*", "÷", "."]
+      if(name == "÷") name = "/"
+       var operators = ["+", "-", "*", "/", "."]
        if(operators.indexOf(name) !== -1){ // этот отрезок кода не даст поставить первым символом оператор и так же ставить операторы друг за другом, чтобы избежать ошибок
          var lastSymbol = this.tfd.text.split("\n")[0].slice(-1)
          if(operators.indexOf(lastSymbol) !== -1 || lastSymbol == ""){
