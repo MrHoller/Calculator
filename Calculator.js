@@ -86,23 +86,10 @@ class Main extends App
     
     // функция добавления кнопки
     addButton(name, lay){
-      if(lay == 1){
-      	this.btn = ui.addButton(this.layOne, name, "Outlined")
-      }
-      if(lay == 2){
-        this.btn = ui.addButton(this.layTwo, name, "Outlined")
-      }
-      if(lay == 3){
-        this.btn = ui.addButton(this.layTree, name, "Outlined")
-      }
-      if(lay == 4){
-        this.btn = ui.addButton(this.layFour, name, "Outlined")
-      }
-      if(lay == 5){
-        this.btn = ui.addButton(this.layFive, name, "Outlined")
-      }
-      this.btn.setOnTouch(() => this.addSymbol(name))
-      this.btn.sizeVariant = "large"
+    	let lays = [this.layOne, this.layTwo, this.layTree, this.layFour, this.layFive]
+    	this.btn = ui.addButton(lays[lay-1], name, "Outlined")
+    	this.btn.setOnTouch(() => this.addSymbol(name))
+   	 this.btn.sizeVariant = "large"
     }
     
     // функция добавления множества кнопок
