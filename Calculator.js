@@ -27,29 +27,14 @@ class Main extends App
         this.layFive.childSpacing = "even"
         
         // добавляем кнопки на макеты
-        this.addButton("0", 5)
-        this.addButton(".", 5)
-        this.addButton("<-", 5)
-        this.addButton("=", 5)
-        this.addButton("1", 4)
-        this.addButton("2", 4)
-        this.addButton("3", 4)
-        this.addButton("-", 4)
-        this.addButton("4", 3)
-        this.addButton("5", 3)
-        this.addButton("6", 3)
-        this.addButton("+", 3)
-        this.addButton("7", 2)
-        this.addButton("8", 2)
-        this.addButton("9", 2)
-        this.addButton("*", 2)
-        this.addButton("C", 1)
-        this.addButton("(", 1)
-        this.addButton(")", 1)
-        this.addButton("÷", 1)
+        this.addButtons(["0", ".", "<-", "="], 5)
+        this.addButtons(["1", "2", "3", "-"], 4)
+        this.addButtons(["4", "5", "6", "+"], 3)
+        this.addButtons(["7", "8", "9", "*"], 2)
+        this.addButtons(["C", "(", ")", "÷"], 1)
     }
     
-    // функция вывода смволов и подсчета результата
+    // функция вывода символов и подсчета результата
     addSymbol(name){
       if(name == "÷") name = "/"
        var operators = ["+", "-", "*", "/", "."]
@@ -85,7 +70,7 @@ class Main extends App
           this.error = true
           this.tfd.text = e.message
         }
-      } else { // любая другая кнопка добавлять символ в поле
+      } else { // любая другая кнопка добавляет символ в поле
         this.tfd.text = this.tfd.text.split("\n")[0] + name
         this.live()
       }
@@ -99,7 +84,7 @@ class Main extends App
       }catch(e){}
     }
     
-    // функция добавления кнопок
+    // функция добавления кнопки
     addButton(name, lay){
       if(lay == 1){
       	this.btn = ui.addButton(this.layOne, name, "Outlined")
@@ -118,5 +103,10 @@ class Main extends App
       }
       this.btn.setOnTouch(() => this.addSymbol(name))
       this.btn.sizeVariant = "large"
+    }
+    
+    // функция добавления множества кнопок
+    addButtons(names, lay){
+    	names.forEach( name => this.addButton(name, lay) );
     }
 }
